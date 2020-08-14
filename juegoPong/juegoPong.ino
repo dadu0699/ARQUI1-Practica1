@@ -1,10 +1,10 @@
 #include "LedControl.h"
-LedControl ledControl = LedControl(11, 13, 10, 1); // LedControl(DIN, CLK, CS / LOAD, # de dispositivos (cantidad de modulos) de 1 a 8)
+LedControl ledControl = LedControl(51, 53, 49, 1); // LedControl(DIN, CLK, CS / LOAD, # de dispositivos (cantidad de modulos) de 1 a 8)
 
-#define retraso 750 // Lapso de espera
+#define retraso 500 // Lapso de espera
 
 int filas[] = {0, 1, 2, 3, 4, 5, 6, 7}; // filas encienden con 0
-int columnas[] = {8, 9, 10, 11, 12, 13, 14, 15}; // columnas encienden con 1
+int columnas[] = {8, 9, 10, 11, 12, 13, 23, 25}; // columnas encienden con 1
 
 byte puntuacion[5][8] {
   {
@@ -60,14 +60,8 @@ byte puntuacion[5][8] {
 };
 
 void setup() {
-  // inizializarMatrizDirecta();
+  inizializarMatrizDirecta();
   inicializarMatrizControlador();
-  /*
-    digitalWrite(columnas[0], HIGH);
-    digitalWrite(filas[0], LOW);
-    digitalWrite(filas[1], LOW);
-    digitalWrite(columnas[2], HIGH);
-  */
 }
 
 void loop() {
@@ -78,18 +72,18 @@ void loop() {
 }
 
 void inizializarMatrizDirecta() {
-  for (int i = 0; i <= 8; i++) {
+  for (int i = 0; i < 8; i++) {
     pinMode(columnas[i], OUTPUT);
   }
-  for (int i = 0; i <= 8; i++) {
+  for (int i = 0; i < 8; i++) {
     pinMode(filas[i], OUTPUT);
   }
 
   // Limpiar Matriz
-  for (int i = 0; i <= 8; i++) {
+  for (int i = 0; i < 8; i++) {
     digitalWrite(columnas[i], LOW);
   }
-  for (int i = 0; i <= 8; i++) {
+  for (int i = 0; i < 8; i++) {
     digitalWrite(filas[i], HIGH);
   }
 }
