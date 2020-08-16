@@ -8,7 +8,7 @@ int columnas[] = {8, 9, 10, 11, 12, 13, 23, 25}; // columnas encienden con 1
 int UP = 52, DW = 50, DIR = 48;
 boolean direccion = true;
 int velocidadCartel = 250;
-int posicionControlador = 8;
+int posicionControlador = 106;
 String letrero[8] {
   "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
   "011111011110001000001111011110100101111011110111100000111101111011110111101111101111010001000000110",
@@ -45,7 +45,7 @@ void loop() {
   }
 
   delay(velocidadCartel);
-  if (direccion == true) {
+  if (direccion == false) {
     moverCartelIZQ();
   } else  {
     moverCartelDCH();
