@@ -1,12 +1,16 @@
 #include "LedControl.h"
 LedControl ledControl = LedControl(51, 53, 49, 1); // LedControl(DIN, CLK, CS / LOAD, # de dispositivos (cantidad de modulos) de 1 a 8)
 
-int filas[] = {0, 1, 2, 3, 4, 5, 6, 7}; // filas encienden con 0
+int UP = 52, DW = 50, FS = 48;
+int filas[] = {24, 22, 2, 3, 4, 5, 6, 7}; // filas encienden con 0
 int columnas[] = {8, 9, 10, 11, 12, 13, 23, 25}; // columnas encienden con 1
 
 void setup() {
   inizializarMatrizDirecta();
   inicializarMatrizControlador();
+  pinMode(UP, INPUT); // Botón Subir
+  pinMode(DW, INPUT); // Botón Bajar
+  pinMode(FS, INPUT); // Botón Rapido/Lento
 }
 
 void loop() {
