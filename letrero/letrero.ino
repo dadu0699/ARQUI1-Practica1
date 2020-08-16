@@ -21,7 +21,7 @@ String letrero[8] {
 };
 
 void setup() {
-  Serial.begin(9600);
+  //Serial.begin(9600);
   inizializarMatrizDirecta();
   inicializarMatrizControlador();
   pinMode(UP, INPUT); // Botón Subir
@@ -32,6 +32,16 @@ void setup() {
 void loop() {
   if (digitalRead(DIR) == HIGH) {
     direccion = !direccion;
+  }
+
+  if (digitalRead(UP) == HIGH){
+    velocidadCartel -= 50;
+    //Serial.println(velocidadCartel);
+  }
+
+   if (digitalRead(DW) == HIGH){
+    velocidadCartel += 50;
+    //Serial.println(velocidadCartel);
   }
 
   delay(velocidadCartel);
