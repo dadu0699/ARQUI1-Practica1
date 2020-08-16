@@ -121,7 +121,7 @@ void moverCartelDCH() {
     encenderfilas(7, 7 + posicionControlador);
 
     if (posicionControlador == -7) {
-      posicionControlador = 98;
+      posicionControlador = 106;
     }
 
     posicionControlador--;
