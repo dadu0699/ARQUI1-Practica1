@@ -34,12 +34,12 @@ void loop() {
     direccion = !direccion;
   }
 
-  if (digitalRead(UP) == HIGH){
+  if (digitalRead(UP) == HIGH) {
     velocidadCartel -= 50;
     //Serial.println(velocidadCartel);
   }
 
-   if (digitalRead(DW) == HIGH){
+  if (digitalRead(DW) == HIGH) {
     velocidadCartel += 50;
     //Serial.println(velocidadCartel);
   }
@@ -87,6 +87,8 @@ void encenderfilas(int valorColumna, int valor) {
 
 void moverCartelIZQ() {
   for (posicionControlador; posicionControlador <= 98; posicionControlador++) {
+    polarizar(posicionControlador - 8, posicionControlador - 1);
+    
     encenderfilas(0, 0 + posicionControlador);
     encenderfilas(1, 1 + posicionControlador);
     encenderfilas(2, 2 + posicionControlador);
@@ -95,7 +97,7 @@ void moverCartelIZQ() {
     encenderfilas(5, 5 + posicionControlador);
     encenderfilas(6, 6 + posicionControlador);
     encenderfilas(7, 7 + posicionControlador);
-
+    
     if (posicionControlador == 98) {
       posicionControlador = -7;
     }
@@ -122,5 +124,25 @@ void moverCartelDCH() {
 
     posicionControlador--;
     return;
+  }
+}
+
+void polarizar(int inicio, int fin) {
+  int aux = 0;
+  for (int posFila = 0; posFila < 8; posFila++) {
+    digitalWrite(filas[posFila], LOW);
+
+    for (int j = inicio; j <= fin; j++) {
+      if (letrero[posFila].charAt(j) == '1') {
+        digitalWrite(columnas[aux], HIGH);
+      } else {
+        digitalWrite(columnas[aux], LOW);
+      }
+      aux++;
+    }
+    
+    delay(1);
+    digitalWrite(filas[posFila], HIGH);
+    aux = 0;
   }
 }
