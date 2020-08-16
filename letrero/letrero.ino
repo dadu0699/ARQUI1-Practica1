@@ -10,8 +10,8 @@ void setup() {
 }
 
 void loop() {
-  moverCartelIZQ();
-  // moverCartelDCH();
+  // moverCartelIZQ();
+  moverCartelDCH();
 }
 
 void inizializarMatrizDirecta() {
@@ -61,8 +61,8 @@ void encenderfilas(int valorColumna, int valor) {
 }
 
 void moverCartelIZQ() {
-  for (posicionControlador; posicionControlador <= 103; posicionControlador++) {
-    encenderfilas(0, 0 + posicionControlador);  
+  for (posicionControlador; posicionControlador <= 98; posicionControlador++) {
+    encenderfilas(0, 0 + posicionControlador);
     encenderfilas(1, 1 + posicionControlador);
     encenderfilas(2, 2 + posicionControlador);
     encenderfilas(3, 3 + posicionControlador);
@@ -70,25 +70,30 @@ void moverCartelIZQ() {
     encenderfilas(5, 5 + posicionControlador);
     encenderfilas(6, 6 + posicionControlador);
     encenderfilas(7, 7 + posicionControlador);
-        
-    if (posicionControlador == 99) {
+
+    if (posicionControlador == 98) {
       posicionControlador = -7;
     }
-    
+
     delay(velocidadCartel);
   }
 }
 
 void moverCartelDCH() {
-  for (int i = 103; i >= 0; i--) {
-    encenderfilas(0, 0 + i);
-    encenderfilas(1, 1 + i);
-    encenderfilas(2, 2 + i);
-    encenderfilas(3, 3 + i);
-    encenderfilas(4, 4 + i);
-    encenderfilas(5, 5 + i);
-    encenderfilas(6, 6 + i);
-    encenderfilas(7, 7 + i);
+  for (posicionControlador; posicionControlador >= -7; posicionControlador--) {
+    encenderfilas(0, 0 + posicionControlador);
+    encenderfilas(1, 1 + posicionControlador);
+    encenderfilas(2, 2 + posicionControlador);
+    encenderfilas(3, 3 + posicionControlador);
+    encenderfilas(4, 4 + posicionControlador);
+    encenderfilas(5, 5 + posicionControlador);
+    encenderfilas(6, 6 + posicionControlador);
+    encenderfilas(7, 7 + posicionControlador);
+
+    if (posicionControlador == -7) {
+      posicionControlador = 98;
+    }
+
     delay(velocidadCartel);
   }
 }
