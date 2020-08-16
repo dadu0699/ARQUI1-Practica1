@@ -109,6 +109,8 @@ void moverCartelIZQ() {
 
 void moverCartelDCH() {
   for (posicionControlador; posicionControlador >= -7; posicionControlador--) {
+    polarizar (posicionControlador - 8, posicionControlador -1);
+    
     encenderfilas(0, 0 + posicionControlador);
     encenderfilas(1, 1 + posicionControlador);
     encenderfilas(2, 2 + posicionControlador);
