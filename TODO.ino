@@ -28,7 +28,9 @@ int CI1 = 0, CI2 = 1, CI3 = 2;
 //Paleta Derecha
 int CD1 = 0, CD2 = 1, CD3 = 2;
 //Escoger posición de Inicio de la pelota
-int lado;
+int lado; //Si empieza en la izquierda o en la derecha
+bool direccionUD; // Direccion Arriba=true, Abajo=false.
+bool direccionFB; // Direccion Adelante=true, atras=false.
 int columna = 7;
 int fila;
 boolean juego = false;
@@ -41,8 +43,6 @@ void setup() {
   pinMode(UP, INPUT); // Botón Subir
   pinMode(DW, INPUT); // Botón Bajar
   pinMode(DIR, INPUT); // Botón Rapido/Lento
-  randomSeed(8);
-  randomSeed(3);
 }
 
 void loop() {
@@ -73,9 +73,10 @@ void loop() {
     //Hay que arreglar esto :c
     if (digitalRead(S) == HIGH) {
       unsigned long pulso;
-      pulso = pulseInLong(S, HIGH, 6000000);
+      pulso = pulseInLong(S, HIGH, 8000000);
       if (pulso > 3000000) {
         juego = true;
+        randomSeed(pulso); //Número aleatorio
       }
     }
   } else {
@@ -185,9 +186,26 @@ void polarizar(int inicio, int fin) {
 
 void iniciarJuego() {
   //Escoger posición de Inicio de la pelota
-  lado = random(1, 3); // 1-izquierda, 2-derecha
-  columna = 7; // No.columna
+  lado = random(2); // 0-izquierda, 1-derecha
+  if (lado == 0) {
+    columna = 7; // No.columna inicio izquierda
+    direccionFB = false;
+  } else {
+    columna = 0; // No.columna inicio derecha
+    direccionFB = true;
+  }
   fila = random(8); //No. Fila
+  if (fila == 7) {
+    direccionUD = true;
+  } else if (fila == 0) {
+    direccionUD = false;
+  } else {
+    if (random(2) == 0) {
+      direccionUD = true;
+    } else {
+      direccionUD = false;
+    }
+  }
 
   while (true) {
     paletaIzquierda();
@@ -247,16 +265,88 @@ void paletaDerecha() {
   }
 }
 void pelota() {
-  if (lado == 1) {
+  if (lado == 0) {
     digitalWrite(columnas[columna], HIGH);
     digitalWrite(filas[fila], LOW);
     delay(200);
     digitalWrite(columnas[columna], LOW);
     digitalWrite(filas[fila], HIGH);
-  } else {
-    ledControl.setLed(0, fila, 0, true);
-    delay(200);
-    ledControl.setLed(0, fila, 0, false);
-  }
+    //Movimiento
+    if (direccionUD == true && direccionFB == true) {
+      CMas_FMenos();
+    } else if (direccionUD == false && direccionFB == false) {
+      CMenos_FMas();
+    } else if (direccionUD == true && direccionFB == false) {
+      CMenos_FMenos();
+    } else if (direccionUD == false && direccionFB == true) {
+      CMas_FMas();
+    }
+    //PUNTUACIÓN
+    if(columna==0){
+      if(fila!= CI1 && fila !=CI2 && fila!=CI3){
+       //Punto para Jugador 2 
+       }
+      }
+    
+    if ((fila == 7) || (fila == 0)) {
+      direccionUD = !direccionUD;
+    }
+    if (columna == 0) {
+      direccionFB = !direccionFB;
+    }
+    if (columna == 8) {
+      columna = 0;
+      lado =1;
+    }
 
+
+  } else {
+    ledControl.setLed(0, fila, columna, true);
+    delay(200);
+    ledControl.setLed(0, fila, columna, false);
+    //Movimiento
+    if (direccionUD == true && direccionFB == true) {
+      CMas_FMenos();
+    } else if (direccionUD == false && direccionFB == false) {
+      CMenos_FMas();
+    } else if (direccionUD == true && direccionFB == false) {
+      CMenos_FMenos();
+    } else if (direccionUD == false && direccionFB == true) {
+      CMas_FMas();
+    }
+    //PUNTUACIÓN
+    if(columna==7){
+      if(fila!= CD1 && fila !=CD2 && fila!=CD3){
+       //Punto para Jugador 1
+       }
+      }
+    
+    if ((fila == 7) || (fila == 0)) {
+      direccionUD = !direccionUD;
+    }
+    if (columna == 7) {
+      direccionFB = !direccionFB;
+    }
+    if (columna == -1) {
+      columna = 7;
+      lado = 0;
+    }
+  }
+}
+
+void CMenos_FMas() {
+  columna--;
+  fila++;
+}
+void CMenos_FMenos() {
+  columna--;
+  fila--;
+}
+void CMas_FMenos() {
+  columna++;
+  fila--;
+}
+void CMas_FMas() {
+  columna++;
+  fila++;
 }
