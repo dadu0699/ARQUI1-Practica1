@@ -158,7 +158,7 @@ void encenderfilas(int valorColumna, int valor) {
 }
 
 void moverCartelIZQ() {
-  for (posicionControlador; posicionControlador <= 98; posicionControlador++) {
+  for (posicionControlador; posicionControlador <= 110; posicionControlador++) {
     polarizar(posicionControlador - 8, posicionControlador - 1);
 
     encenderfilas(0, 0 + posicionControlador);
@@ -170,7 +170,7 @@ void moverCartelIZQ() {
     encenderfilas(6, 6 + posicionControlador);
     encenderfilas(7, 7 + posicionControlador);
 
-    if (posicionControlador == 98) {
+    if (posicionControlador == 110) {
       posicionControlador = -7;
     }
 
