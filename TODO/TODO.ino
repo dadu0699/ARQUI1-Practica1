@@ -1,4 +1,4 @@
- #include "LedControl.h"
+#include "LedControl.h"
 LedControl ledControl = LedControl(51, 53, 49, 1); // LedControl(DIN, CLK, CS / LOAD, # de dispositivos (cantidad de modulos) de 1 a 8)
 
 int filas[] = {24, 22, 2, 3, 4, 5, 6, 7}; // filas encienden con 0
@@ -19,46 +19,42 @@ String letrero[8] {
   "000100010000001000001111010010111101000011110011000000111101111011110111101111101111010001000001001",
   "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
 };
- // NUMEROS PUNTUACION 
- //PUNTUACION 
 
-int numero0[8][8] = { {0,0,0,0,0,0,0,0},{0,0,0,1,1,0,0,0},{0,0,1,0,0,1,0,0},{0,0,1,0,0,1,0,0},
-                      {0,0,1,0,0,1,0,0},{0,0,1,0,0,1,0,0},{0,0,0,1,1,0,0,0},{0,0,0,0,0,0,0,0}};
-                      
-int numero1[8][8] = { {0,0,0,0,0,0,0,0},{0,0,0,0,1,1,0,0},{0,0,0,1,0,1,0,0},{0,0,1,0,0,1,0,0},
-                      {0,0,0,0,0,1,0,0},{0,0,0,0,0,1,0,0},{0,0,0,0,0,1,0,0},{0,0,0,0,0,0,0,0}};
-                      
-int numero2[8][8] = {{0,0,0,0,0,0,0,0},{0,0,0,1,1,0,0,0}, {0,0,1,0,0,1,0,0},{0,0,0,0,0,1,0,0},
-                   {0,0,0,0,1,0,0,0},{0,0,0,1,0,0,0,0},{0,0,1,1,1,1,0,0},{0,0,0,0,0,0,0,0}}; 
-   
-int numero3[8][8]= { {0,0,0,0,0,0,0,0},{0,0,1,1,1,1,0,0},{0,0,0,0,0,1,0,0},{0,0,0,0,1,0,0,0},
-                   {0,0,0,0,0,1,0,0},{0,0,1,0,0,1,0,0},{0,0,0,1,1,0,0,0},{0,0,0,0,0,0,0,0}};
+//PUNTUACION
+int numero0[8][8] = { {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 0, 0, 1, 0, 0}, {0, 0, 1, 0, 0, 1, 0, 0},
+  {0, 0, 1, 0, 0, 1, 0, 0}, {0, 0, 1, 0, 0, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}
+};
 
-int numero4[8][8] = {{0,0,0,0,0,0,0,0}, {0,0,0,0,1,1,0,0},{0,0,0,1,0,1,0,0},{0,0,1,0,0,1,0,0},
-                   {0,0,1,1,1,1,1,0},{0,0,0,0,0,1,0,0},{0,0,0,0,0,1,0,0},{0,0,0,0,0,0,0,0}};
+int numero1[8][8] = { {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 0, 1, 0, 0}, {0, 0, 1, 0, 0, 1, 0, 0},
+  {0, 0, 0, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}
+};
+
+int numero2[8][8] = {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 1, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 1, 0, 0},
+  {0, 0, 0, 0, 1, 0, 0, 0}, {0, 0, 0, 1, 0, 0, 0, 0}, {0, 0, 1, 1, 1, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}
+};
+
+int numero3[8][8] = { {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 1, 1, 1, 1, 0, 0}, {0, 0, 0, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 1, 0, 0, 0},
+  {0, 0, 0, 0, 0, 1, 0, 0}, {0, 0, 1, 0, 0, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}
+};
+
+int numero4[8][8] = {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 1, 0, 1, 0, 0}, {0, 0, 1, 0, 0, 1, 0, 0},
+  {0, 0, 1, 1, 1, 1, 1, 0}, {0, 0, 0, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}
+};
 
 byte puntuacion[5][8] {
-  {
-    B00000000, B00011000, B00100100, B00100100, B00100100, B00100100, B00011000, B00000000
-  },
-  {
-    B00000000, B00001100, B00010100, B00100100, B00000100, B00000100, B00000100, B00000000
-  },
-  {
-    B00000000, B00011000, B00100100, B00000100, B00001000, B00010000, B00111100, B00000000
-  },
-  {
-    B00000000, B00111100, B00000100, B00001000, B00000100, B00100100, B00011000, B00000000
-  },
-  {
-    B00000000, B00001100, B00010100, B00100100, B00111110, B00000100, B00000100, B00000000
-  }
+  {B00000000, B00011000, B00100100, B00100100, B00100100, B00100100, B00011000, B00000000},//0
+  {B00000000, B00001100, B00010100, B00100100, B00000100, B00000100, B00000100, B00000000},//1
+  {B00000000, B00011000, B00100100, B00000100, B00001000, B00010000, B00111100, B00000000},//2
+  {B00000000, B00111100, B00000100, B00001000, B00000100, B00100100, B00011000, B00000000},//3
+  {B00000000, B00001100, B00010100, B00100100, B00111110, B00000100, B00000100, B00000000} //4
 };
 
 /* JUEGO  */
 int U1 = 27, D1 = 29, U2 = 33, D2 = 35, S =  37;
 int punteoJ1 = 0;
-int punteoJ2 = 0; 
+int punteoJ2 = 0;
+unsigned long start = 0;
+unsigned long duracion = 0;
 
 //Paleta Izquierda
 int CI1 = 0, CI2 = 1, CI3 = 2;
@@ -74,7 +70,6 @@ boolean juego = false;
 
 
 void setup() {
-  //Serial.begin(9600);
   inizializarMatrizDirecta();
   inicializarMatrizControlador();
   pinMode(UP, INPUT); // Botón Subir
@@ -83,6 +78,7 @@ void setup() {
 }
 
 void loop() {
+
   if (juego == false) {
 
     //LETRERO
@@ -90,32 +86,30 @@ void loop() {
     if (digitalRead(DIR) == HIGH) {
       direccion = !direccion;
     }
-
     if (digitalRead(UP) == HIGH) {
       velocidadCartel -= 50;
-      //Serial.println(velocidadCartel);
     }
-
     if (digitalRead(DW) == HIGH) {
       velocidadCartel += 50;
-      //Serial.println(velocidadCartel);
     }
-
     delay(velocidadCartel);
     if (direccion == false) {
       moverCartelIZQ();
     } else  {
       moverCartelDCH();
     }
-    //Hay que arreglar esto :c
+
+    //Evaluamos el valor del botón start
     if (digitalRead(S) == HIGH) {
-      unsigned long pulso;
-      pulso = pulseInLong(S, HIGH, 8000000);
-      if (pulso > 3000000) {
+      start = millis();
+      while (digitalRead(S) == HIGH) {
+      }
+      duracion = millis() - start;
+      if (duracion > 3000) {
         juego = true;
-        randomSeed(pulso); //Número aleatorio
       }
     }
+
   } else {
     inizializarMatrizDirecta();
     ledControl.clearDisplay(0);
@@ -173,7 +167,6 @@ void moverCartelIZQ() {
     if (posicionControlador == 110) {
       posicionControlador = -7;
     }
-
     posicionControlador++;
     return;
   }
@@ -248,24 +241,38 @@ void iniciarJuego() {
     paletaIzquierda();
     pelota();
     paletaDerecha();
-    if(digitalRead(S) == HIGH){
-      unsigned long pulso; 
-      pulso = pulseInLong(S, HIGH, 8000000);
-      if(pulso > 3000000){
-        juego = false; 
-        punteoJ1 = 0; 
-        punteoJ2 = 0;     
+
+    //OPCION 1 - 3 segs nitidos, Pausa debe ser invocada un poco lenta
+    if (digitalRead(S) == HIGH) {
+      start = millis();
+      while (digitalRead(S) == HIGH) {
       }
-      if(juego){
-      pausaPuntuacion(punteoJ1, punteoJ2); 
+      duracion = millis() - start;
+      if (duracion > 3000) {
+        juego = false;
+        punteoJ1 = 0;
+        punteoJ2 = 0;
+      } else {
+        pausaPuntuacion(punteoJ1, punteoJ2);
       }
     }
-    
+    //OPCION 2 - Pausa nitida, 3 segs solo cuando esta pausado.
+    /*if (digitalRead(S) == HIGH) {
+      unsigned long pulso;
+      pulso = pulseInLong(S, HIGH, 8000000);
+      if (pulso > 3000000) {
+        juego = false;
+        punteoJ1 = 0;
+        punteoJ2 = 0;
+      }
+      if (juego) {
+        pausaPuntuacion(punteoJ1, punteoJ2);
+      }
+      }*/
   }
 }
 
 void paletaIzquierda() {
-
   digitalWrite(columnas[0], HIGH);
   digitalWrite(filas[CI1], LOW);
   digitalWrite(filas[CI2], LOW);
@@ -276,24 +283,21 @@ void paletaIzquierda() {
     digitalWrite(filas[CI1], HIGH);
     digitalWrite(filas[CI2], HIGH);
     digitalWrite(filas[CI3], HIGH);
-    CI1++;
-    CI2++;
-    CI3++;
+    CI1++; CI2++; CI3++;
   }
   if (digitalRead(U1) == HIGH && CI1 > 0) {
     delay(300);
     digitalWrite(filas[CI1], HIGH);
     digitalWrite(filas[CI2], HIGH);
     digitalWrite(filas[CI3], HIGH);
-    CI1--;
-    CI2--;
-    CI3--;
+    CI1--; CI2--; CI3--;
   }
   digitalWrite(columnas[0], LOW);
   digitalWrite(filas[CI1], HIGH);
   digitalWrite(filas[CI2], HIGH);
   digitalWrite(filas[CI3], HIGH);
 }
+
 void paletaDerecha() {
   ledControl.setLed(0, CD1, 7, true);
   ledControl.setLed(0, CD2, 7, true);
@@ -331,23 +335,23 @@ void pelota() {
     } else if (direccionUD == false && direccionFB == true) {
       CMas_FMas();
     }
+
     //PUNTUACIÓN
-    if(columna==0){
-      if(fila!= CI1 && fila !=CI2 && fila!=CI3){
-       //Punto para Jugador 2 
-        punteoJ2++; 
-        iniciarPuntuacion(punteoJ1, punteoJ2); 
-          if(punteoJ2 == 4){ //JUGADOR 2 GANOOO!
-            punteoJ2 = 0; 
-            punteoJ1 = 0; 
-            juego = false; 
-          } 
-        if(juego){
-          iniciarJuego();                  
+    if (columna == 0) {
+      if (fila != CI1 && fila != CI2 && fila != CI3) {
+        punteoJ2++; //Punto para Jugador 2
+        iniciarPuntuacion(punteoJ1, punteoJ2);
+        if (punteoJ2 == 4) { //JUGADOR 2 GANOOO!
+          punteoJ2 = 0;
+          punteoJ1 = 0;
+          juego = false;
+        }
+        if (juego) {
+          iniciarJuego();
         }
       }
     }
-    
+
     if ((fila == 7) || (fila == 0)) {
       direccionUD = !direccionUD;
     }
@@ -356,7 +360,7 @@ void pelota() {
     }
     if (columna == 8) {
       columna = 0;
-      lado =1;
+      lado = 1;
     }
 
 
@@ -375,22 +379,21 @@ void pelota() {
       CMas_FMas();
     }
     //PUNTUACIÓN
-    if(columna==7){
-      if(fila!= CD1 && fila !=CD2 && fila!=CD3){
-       //Punto para Jugador 1
-        punteoJ1++; 
-        iniciarPuntuacion(punteoJ1,punteoJ2);
-        if(punteoJ1 == 4){ //JUGADOR 2 GANOOO!
-            punteoJ2 = 0; 
-            punteoJ1 = 0; 
-            juego = false; 
-        } 
-        if(juego){
-          iniciarJuego();                  
-        }        
-       }
+    if (columna == 7) {
+      if (fila != CD1 && fila != CD2 && fila != CD3) {
+        punteoJ1++; //Punto para Jugador 1
+        iniciarPuntuacion(punteoJ1, punteoJ2);
+        if (punteoJ1 == 4) { //JUGADOR 2 GANOOO!
+          punteoJ2 = 0;
+          punteoJ1 = 0;
+          juego = false;
+        }
+        if (juego) {
+          iniciarJuego();
+        }
       }
-    
+    }
+
     if ((fila == 7) || (fila == 0)) {
       direccionUD = !direccionUD;
     }
@@ -421,63 +424,67 @@ void CMas_FMas() {
   fila++;
 }
 
-void iniciarPuntuacion(int punteo1, int punteo2){ // Mostrar Punteo por 3 segundos 
+void iniciarPuntuacion(int punteo1, int punteo2) { // Mostrar Punteo por 3 segundos
 
   unsigned long tiempo1 = millis();
-  unsigned long tiempo2 = millis();  
-  
-  while(true){
-  mostrarPunteo(punteo1, punteo2);
-  tiempo1 = millis(); 
-    if(tiempo1 >= (tiempo2+3000)){
+  unsigned long tiempo2 = millis();
+
+  while (true) {
+    mostrarPunteo(punteo1, punteo2);
+    tiempo1 = millis();
+    if (tiempo1 >= (tiempo2 + 3000)) {
       tiempo1 = 0;
-      break;      
+      break;
     }
   }
 }
 
-void pausaPuntuacion(int punteo1, int punteo2){  
-  while(true){
-  mostrarPunteo(punteo1, punteo2);
-     if(digitalRead(S) == HIGH){
-      break;      
+void pausaPuntuacion(int punteo1, int punteo2) {
+  /*while (digitalRead(S) != HIGH){
+    mostrarPunteo(punteo1, punteo2);
+    }*/
+
+  while (true) {
+    mostrarPunteo(punteo1, punteo2);
+    if (digitalRead(S) == HIGH) {
+      break;
     }
   }
 }
 
-void mostrarPunteo(int punteo1, int punteo2){ // Mostrar Puntuacion en controlador y matriz directa 
-    for (int i = 0; i < 8; i++) {
-      ledControl.setRow(0, i, puntuacion[punteo2][i]); 
-    }
+void mostrarPunteo(int punteo1, int punteo2) { // Mostrar Puntuacion en controlador y matriz directa
+  for (int i = 0; i < 8; i++) {
+    ledControl.setRow(0, i, puntuacion[punteo2][i]);
+  }
 
-    for (int i = 0; i < 8; i++) {
-      if(punteo1 == 0){
-        mostrarPuntuacion(numero0); 
-      }else if(punteo1 == 1){
-        mostrarPuntuacion(numero1); 
-      }else if(punteo1 == 2){
-        mostrarPuntuacion(numero2); 
-      }else if(punteo1 == 3){
-        mostrarPuntuacion(numero3); 
-      }else if(punteo1 ==4){
-        mostrarPuntuacion(numero4); 
+  for (int i = 0; i < 8; i++) {
+    if (punteo1 == 0) {
+      mostrarPuntuacion(numero0);
+    } else if (punteo1 == 1) {
+      mostrarPuntuacion(numero1);
+    } else if (punteo1 == 2) {
+      mostrarPuntuacion(numero2);
+    } else if (punteo1 == 3) {
+      mostrarPuntuacion(numero3);
+    } else if (punteo1 == 4) {
+      mostrarPuntuacion(numero4);
+    }
+  }
+
+  ledControl.clearDisplay(0);
+}
+void mostrarPuntuacion(int numero[][8]) { // numero en matriz directa
+  for (int i = 0; i < 8; i++) {
+    digitalWrite(columnas[i], HIGH);
+    for (int j = 0; j < 8; j++) {
+      if (numero[j][i] == 1) {
+        digitalWrite(filas[j], LOW);
       }
     }
-
-    ledControl.clearDisplay(0);   
-}
-void mostrarPuntuacion(int numero[][8]){  // numero en matriz directa 
-  for(int i = 0; i < 8; i++){
-      digitalWrite(columnas[i], HIGH);
-      for(int j = 0; j < 8; j++){
-        if (numero[j][i] == 1){
-          digitalWrite(filas[j], LOW);  
-        }
-      } 
-      delay(1);
-      digitalWrite(columnas[i], LOW); 
-      for(int j = 0; j < 8; j++){
-        digitalWrite(filas[j], HIGH);
-      } 
+    delay(1);
+    digitalWrite(columnas[i], LOW);
+    for (int j = 0; j < 8; j++) {
+      digitalWrite(filas[j], HIGH);
+    }
   }
 }
